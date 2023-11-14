@@ -1,0 +1,38 @@
+body {
+  display: flex;
+  justify-content: center;
+  min-height: 100dvh;
+  width: 100%;
+}
+
+.game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.game-board {
+  display: grid;
+  gap: 0.5rem;
+  justify-items: center;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.square {
+  width: 1rem;
+  height: 1rem;
+  padding: 1rem;
+  display: flex;
+  font-size: 1.25rem;
+  line-height: 0;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ddd;
+
+  cursor: pointer;
+}
+
+button {
+  all: unset;
+}

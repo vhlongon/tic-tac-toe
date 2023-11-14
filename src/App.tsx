@@ -82,7 +82,7 @@ const App = () => {
           <Square key={index} value={value} onClick={handleClick(index)} />
         ))}
       </div>
-      <button className={`reset ${!winner ? 'hide' : ''}`} onClick={reset}>
+      <button className="reset" onClick={reset}>
         Reset
       </button>
       {winner && <Confetti />}

@@ -64,7 +64,9 @@ const App = () => {
   const winner = calculateWinner(squares);
 
   const winnerText = winner ? `${winner} wins!` : '';
-  const status = `Next player: ${xIsNext ? 'X' : 'O'}`;
+  const status = !squares.filter(Boolean).length
+    ? 'X stars'
+    : `Next player: ${xIsNext ? 'X' : 'O'}`;
 
   return (
     <div className="game">

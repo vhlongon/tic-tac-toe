@@ -46,9 +46,9 @@ body {
 
 .square {
   transition: all 0.2s ease-in-out;
-  width: 1.5rem;
-  height: 1.5rem;
-  padding: 1.5rem;
+  width: clamp(1.5rem, 2.5rem, 10vw);
+  height: clamp(1.5rem, 2.5rem, 10vw);
+  padding: clamp(0.5rem, 1.5rem, 5vw);
   display: flex;
   font-size: 2rem;
   line-height: 0;

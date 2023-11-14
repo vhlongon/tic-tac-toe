@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './App.css';
 
 type Player = 'X' | 'O' | null;
@@ -37,12 +37,12 @@ const Square = ({ value, onClick }: SquareProps) => (
   </button>
 );
 
-const App: React.FC = () => {
+const App = () => {
   const [squares, setSquares] = useState<Player[]>(initialBoard);
   const [xIsNext, setXIsNext] = useState<boolean>(true);
 
   const handleClick = (index: number) => () => {
-    if (squares[index] || calculateWinner(squares)) {
+    if (squares[index] ?? calculateWinner(squares)) {
       return;
     }
 

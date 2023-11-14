@@ -62,30 +62,28 @@ const App = () => {
   };
 
   const winner = calculateWinner(squares);
-  const status = winner
-    ? `Winner: ${winner}`
-    : `Next player: ${xIsNext ? 'X' : 'O'}`;
+
+  const winnerText = winner ? `${winner} wins!` : '';
+  const status = `Next player: ${xIsNext ? 'X' : 'O'}`;
 
   return (
     <div className="game">
-      {winner ? null : (
-        <div className="game-info">
-          <div>{status}</div>
-        </div>
-      )}
+      <div className={`winner-text ${winnerText ? 'pop' : ''}`}>
+        {winnerText}
+      </div>
+      <div className={`game-info ${winner ? 'hide' : ''}`}>
+        <div>{status}</div>
+      </div>
+
       <div className="game-board">
         {squares.map((value, index) => (
           <Square key={index} value={value} onClick={handleClick(index)} />
         ))}
       </div>
-      {winner && (
-        <>
-          <button className="reset" onClick={reset}>
-            reset
-          </button>
-          <Confetti />
-        </>
-      )}
+      <button className={`reset ${!winner ? 'hide' : ''}`} onClick={reset}>
+        Reset
+      </button>
+      {winner && <Confetti />}
     </div>
   );
 };

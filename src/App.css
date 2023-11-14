@@ -1,17 +1,18 @@
 :root {
   --accent: rgb(160, 117, 43);
   --color: rgb(235, 193, 120);
-  --bg-dark: rgb(28, 23, 15);
-  --bg: rgb(19, 15, 9);
+  --bg: rgb(28, 23, 15);
+  --bg-dark: rgb(19, 15, 9);
 }
 
 body {
+  font-family: 'Open Sans', sans-serif;
   display: flex;
   justify-content: center;
   min-height: 100dvh;
   width: 100%;
   color: var(--color);
-  background-color: var(--bg);
+  background-color: var(--bg-dark);
 }
 
 .game {
@@ -25,9 +26,13 @@ body {
   font-size: 1.5rem;
 }
 
+.hide {
+  opacity: 0;
+}
+
 .game-board {
   display: grid;
-  gap: 0.5rem;
+  gap: 1rem;
   justify-items: center;
   grid-template-columns: repeat(3, 1fr);
 }
@@ -40,6 +45,7 @@ body {
 }
 
 .square {
+  transition: all 0.2s ease-in-out;
   width: 2rem;
   height: 2rem;
   padding: 2rem;
@@ -49,9 +55,76 @@ body {
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  background-color: var(--bg-dark);
+  background-color: var(--bg);
+}
+-dark .square:focus {
+  outline: var(--accent) auto 1px;
+}
+.square:hover {
+  outline: none;
+  border-color: var(--color);
+  scale: 1.2;
 }
 
 button {
   all: unset;
+}
+
+@keyframes pop {
+  from {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+
+  10%,
+  20% {
+    -webkit-transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+    transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+  }
+
+  30%,
+  50%,
+  70%,
+  90% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+  }
+
+  40%,
+  60%,
+  80% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+  }
+
+  to {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.winner-text {
+  --clr-primary: var(--color);
+  --clr-secondary: var(--accent);
+  opacity: 0;
+  font-weight: bold;
+  color: var(--clr-primary);
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 100pt;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-shadow: 0px -6px 0 var(--bg), 0px -6px 0 var(--bg), 0px 6px 0 var(--bg),
+    0px 6px 0 var(--bg), -6px 0px 0 var(--bg), 6px 0px 0 var(--bg),
+    -6px 0px 0 var(--bg), 6px 0px 0 var(--bg), -6px -6px 0 var(--bg),
+    6px -6px 0 var(--bg), -6px 6px 0 var(--bg), 6px 6px 0 var(--bg),
+    -6px 18px 0 var(--bg), 0px 18px 0 var(--bg), 6px 18px 0 var(--bg),
+    0 19px 1px rgba(0, 0, 0, 0.1), 0 0 6px rgba(0, 0, 0, 0.1),
+    0 6px 3px rgba(0, 0, 0, 0.3), 0 12px 6px rgba(0, 0, 0, 0.2),
+    0 18px 18px rgba(0, 0, 0, 0.25), 0 24px 24px rgba(0, 0, 0, 0.2),
+    0 36px 36px rgba(0, 0, 0, 0.15);
+}
+
+.winner-text.pop {
+  opacity: 1;
+  animation: pop 1s ease-in-out;
 }

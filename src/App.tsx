@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Confetti from 'react-confetti';
 import './App.css';
 
 type Player = 'X' | 'O' | null;
@@ -55,6 +56,11 @@ const App = () => {
     setXIsNext(xIsNext => !xIsNext);
   };
 
+  const reset = () => {
+    setSquares(initialBoard);
+    setXIsNext(true);
+  };
+
   const winner = calculateWinner(squares);
   const status = winner
     ? `Winner: ${winner}`
@@ -62,14 +68,24 @@ const App = () => {
 
   return (
     <div className="game">
+      {winner ? null : (
+        <div className="game-info">
+          <div>{status}</div>
+        </div>
+      )}
       <div className="game-board">
         {squares.map((value, index) => (
           <Square key={index} value={value} onClick={handleClick(index)} />
         ))}
       </div>
-      <div className="game-info">
-        <div>{status}</div>
-      </div>
+      {winner && (
+        <>
+          <button className="reset" onClick={reset}>
+            reset
+          </button>
+          <Confetti />
+        </>
+      )}
     </div>
   );
 };
